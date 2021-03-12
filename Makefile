@@ -24,9 +24,9 @@ examples_dir = $(env_dir)/work/srw_python
 #example10_data_dir = $(examples_dir)/data_example_10
 export MODE ?= 0
 
-nofftw: core pylib
+nofftw: core pylib pymod
 
-all: clean fftw core pylib
+all: clean fftw core pylib pymod
 
 fftw:
 	if [ ! -d "$(ext_dir)" ]; then \
@@ -69,6 +69,11 @@ core:
 
 pylib:
 	cd $(py_dir); make python
+
+pymod:
+	cd $(root_dir);
+	ln -s $(examples_dir) srw
+	python setup.py install
 
 clean:
 	rm -f $(ext_dir)/libfftw3f.a $(ext_dir)/libfftw3.a $(gcc_dir)/libsrw.a $(gcc_dir)/srwlpy*.so; \
