@@ -72,7 +72,7 @@ pylib:
 
 pymod:
 	cd $(root_dir);
-	ln -s $(examples_dir) srw
+	#ln -s $(examples_dir) srw
 	python setup.py install
 
 clean:
